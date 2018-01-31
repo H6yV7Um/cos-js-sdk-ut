@@ -1,6 +1,20 @@
 var COS = require('cos-nodejs-sdk-v5');
-var config = require('../../config');
+var assert = require("assert");
 var util = require('../util');
+
+var config;
+if (process.env.AppId) {
+    config = {
+        SecretId: process.env.SecretId,
+        SecretKey: process.env.SecretKey,
+        AppId: process.env.AppId,
+        Region: process.env.Region,
+    };
+} else {
+    config = require('../config');
+}
+config.Bucket = 'nodejsut200-' + config.AppId;
+
 
 var fs = require('fs');
 var path = require('path');
@@ -8,11 +22,6 @@ var request = require('request');
 config.Region = 'cos.' + config.Region;
 var Writable = require('stream').Writable;
 
-var cos = new COS({
-    AppId: config.AppId,
-    SecretId: config.SecretId,
-    SecretKey: config.SecretKey,
-});
 
 var AppId = config.AppId;
 var Bucket = config.Bucket;
@@ -22,7 +31,11 @@ if (config.Bucket.indexOf('-') > -1) {
     AppId = arr[1];
 }
 
-var assert = require("assert");
+var cos = new COS({
+    AppId: config.AppId,
+    SecretId: config.SecretId,
+    SecretKey: config.SecretKey,
+});
 
 function prepareBucket() {
     return new Promise(function (resolve, reject) {
@@ -83,7 +96,7 @@ describe('getService()', function () {
             cos.getService(function (err, data) {
                 var hasBucket = false;
                 data.Buckets && data.Buckets.forEach(function (item) {
-                    if (item.Name === Bucket + '-' + AppId && (item.Location === config.Region || 'cos.' + item.Location === config.Region)) {
+                    if (item.Name === Bucket + '-' + AppId && (item.Location === '' || item.Location === config.Region || 'cos.' + item.Location === config.Region)) {
                         hasBucket = true;
                     }
                 });
@@ -125,7 +138,7 @@ describe('getAuth()', function () {
 
 describe('putBucket()', function () {
     this.timeout(60000);
-    var bucket = 'test' + Date.now().toString(36);
+    var bucket = 'nodejsut' + Date.now().toString(36);
     it('正常创建 bucket', function (done) {
         cos.putBucket({
             Bucket: bucket,
@@ -566,10 +579,10 @@ describe('ObjectACL', function () {
                 Bucket: config.Bucket,
                 Region: config.Region,
                 ACL: 'private',
-                Key: '1mb.zip',
+                Key: '1.txt',
             }, function (err, data) {
                 assert(!err);
-                cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+                cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                     AccessControlPolicy.Owner.ID = data.Owner.ID;
                     AccessControlPolicy2.Owner.ID = data.Owner.ID;
                     assert(data.Grants.length === 1);
@@ -583,10 +596,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             ACL: 'public-read',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert(data.Grants[1] && data.Grants[1].Permission === 'READ');
                 done();
             });
@@ -597,10 +610,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             ACL: 'public-read-write',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert(data.Grants[0] && data.Grants[0].Permission === 'FULL_CONTROL');
                 assert(data.Grants[1] && data.Grants[1].Permission === 'READ');
                 assert(data.Grants[2] && data.Grants[2].Permission === 'WRITE');
@@ -614,10 +627,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             GrantRead: 'uin="1001", uin="1002"',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.GrantRead = GrantRead);
                 done();
             });
@@ -629,10 +642,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             GrantWrite: 'uin="1001", uin="1002"',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.GrantWrite = GrantWrite);
                 done();
             });
@@ -644,10 +657,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             GrantFullControl: 'uin="1001", uin="1002"',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.GrantFullControl = GrantFullControl);
                 done();
             });
@@ -660,10 +673,10 @@ describe('ObjectACL', function () {
             Region: config.Region,
             GrantFullControl: 'uin="1001", uin="1002"',
             ACL: 'public-read',
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getObjectAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.GrantFullControl = GrantFullControl);
                 assert(data.Grants[0].Permission === 'READ');
                 assert(data.Grants[1].Permission === 'FULL_CONTROL');
@@ -677,10 +690,10 @@ describe('ObjectACL', function () {
             Bucket: config.Bucket,
             Region: config.Region,
             AccessControlPolicy: AccessControlPolicy,
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getBucketAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getBucketAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.Grants.length === 1);
                 assert.ok(data.Grants[0] && data.Grants[0].Grantee.ID === 'qcs::cam::uin/10002:uin/10002', '设置 AccessControlPolicy ID 正确');
                 assert.ok(data.Grants[0] && data.Grants[0].Permission === 'READ', '设置 AccessControlPolicy Permission 正确');
@@ -688,15 +701,15 @@ describe('ObjectACL', function () {
             });
         });
     });
-    it('putBucketAcl() xml2', function (done) {
+    it('putObjectAcl() xml2', function (done) {
         cos.putBucketAcl({
             Bucket: config.Bucket,
             Region: config.Region,
             AccessControlPolicy: AccessControlPolicy2,
-            Key: '1mb.zip',
+            Key: '1.txt',
         }, function (err, data) {
             assert(!err);
-            cos.getBucketAcl({Bucket: config.Bucket, Region: config.Region, Key: '1mb.zip'}, function (err, data) {
+            cos.getBucketAcl({Bucket: config.Bucket, Region: config.Region, Key: '1.txt'}, function (err, data) {
                 assert.ok(data.Grants.length === 1);
                 assert.ok(data.Grants[0] && data.Grants[0].Grantee.ID === 'qcs::cam::uin/10002:uin/10002', 'ID 正确');
                 assert.ok(data.Grants[0] && data.Grants[0].Permission === 'READ', 'Permission 正确');
@@ -914,7 +927,7 @@ describe('BucketPolicy', function () {
     var Prefix = Date.now().toString(36);
     var Policy = {
         "version": "2.0",
-        "principal": {"qcs": ["qcs::cam::uin/2832742109:uin/2832742109"]}, // 这里的 10001 是 QQ 号
+        "principal": {"qcs": ["qcs::cam::uin/2779643970:uin/2779643970"]}, // 这里的 10001 是 QQ 号
         "statement": [{
             "effect": "allow",
             "action": [
@@ -966,7 +979,7 @@ describe('BucketPolicy', function () {
     });
 });
 
-
+return;
 describe('BucketLocation', function () {
     it('getBucketLocation()', function (done) {
         cos.getBucketLocation({

@@ -1,6 +1,19 @@
 var COS = require('cos-nodejs-sdk-v5');
-var config = require('../../config');
 var util = require('../util');
+
+var config;
+if (process.env.AppId) {
+    config = {
+        SecretId: process.env.SecretId,
+        SecretKey: process.env.SecretKey,
+        AppId: process.env.AppId,
+        Region: process.env.Region,
+    };
+} else {
+    config = require('../config');
+}
+config.Bucket = 'nodejsut206-' + config.AppId;
+
 
 var fs = require('fs');
 var path = require('path');
@@ -9,6 +22,7 @@ config.Region = 'cos.' + config.Region;
 var Writable = require('stream').Writable;
 
 var cos = new COS({
+    AppId: config.AppId,
     SecretId: config.SecretId,
     SecretKey: config.SecretKey,
 });
@@ -82,7 +96,7 @@ describe('getService()', function () {
             cos.getService(function (err, data) {
                 var hasBucket = false;
                 data.Buckets && data.Buckets.forEach(function (item) {
-                    if (item.Name === Bucket + '-' + AppId && (item.Location === config.Region || 'cos.' + item.Location === config.Region)) {
+                    if (item.Name === Bucket + '-' + AppId && (item.Location === '' || item.Location === config.Region || 'cos.' + item.Location === config.Region)) {
                         hasBucket = true;
                     }
                 });
@@ -124,13 +138,13 @@ describe('getAuth()', function () {
 
 describe('putBucket()', function () {
     this.timeout(60000);
-    var bucket = 'test' + Date.now().toString(36);
+    var bucket = 'nodejsut' + Date.now().toString(36) + '-' + AppId;
     it('正常创建 bucket', function (done) {
         cos.putBucket({
             Bucket: bucket,
             Region: config.Region
         }, function (err, data) {
-            assert.equal('http://' + bucket + '-' + AppId + '.' + config.Region + '.myqcloud.com', data.Location);
+            assert.equal('http://' + bucket + '.' + config.Region + '.myqcloud.com', data.Location);
             cos.headBucket({
                 Bucket: bucket,
                 Region: config.Region
@@ -741,7 +755,7 @@ describe('BucketCORS', function () {
             Region: config.Region
         }, function (err, data) {
             assert(!err);
-            setTimeout(function(){
+            setTimeout(function() {
                 cos.getBucketCors({
                     Bucket: config.Bucket,
                     Region: config.Region
@@ -749,7 +763,7 @@ describe('BucketCORS', function () {
                     assert(err && err.error.Code === "NoSuchCORSConfiguration");
                     done();
                 });
-            },2000)
+            }, 2000)
         });
     });
     it('putBucketCors(),getBucketCors()', function (done) {
@@ -875,7 +889,7 @@ describe('BucketTagging', function () {
             Region: config.Region
         }, function (err, data) {
             assert(!err);
-            setTimeout(function(){
+            setTimeout(function() {
                 cos.getBucketTagging({
                     Bucket: config.Bucket,
                     Region: config.Region
@@ -883,7 +897,7 @@ describe('BucketTagging', function () {
                     assert(err && err.error.Code === "NoSuchTagSet");
                     done();
                 });
-            },2000)
+            }, 2000);
         });
     });
     it('putBucketTagging() multi', function (done) {
@@ -914,7 +928,7 @@ describe('BucketPolicy', function () {
     var Prefix = Date.now().toString(36);
     var Policy = {
         "version": "2.0",
-        "principal": {"qcs": ["qcs::cam::uin/10001:uin/10001"]}, // 这里的 10001 是 QQ 号
+        "principal": {"qcs": ["qcs::cam::uin/2779643970:uin/2779643970"]}, // 这里的 10001 是 QQ 号
         "statement": [{
             "effect": "allow",
             "action": [
@@ -1069,7 +1083,7 @@ describe('BucketLifecycle', function () {
                     assert(comparePlainObject(RulesMulti, data.Rules));
                     done();
                 });
-            },2000)
+            }, 2000)
         });
     });
 });

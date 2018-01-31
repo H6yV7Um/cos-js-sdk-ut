@@ -1,20 +1,24 @@
 var COS = require('cos-nodejs-sdk-v5');
-var config = require('../../config');
 var util = require('../util');
+
+var config;
+if (process.env.AppId) {
+    config = {
+        SecretId: process.env.SecretId,
+        SecretKey: process.env.SecretKey,
+        AppId: process.env.AppId,
+        Region: process.env.Region,
+    };
+} else {
+    config = require('../config');
+}
+config.Bucket = 'nodejsut226-' + config.AppId;
+
 
 var fs = require('fs');
 var path = require('path');
 var request = require('request');
 var Writable = require('stream').Writable;
-
-if (process.env.AppId) {
-    config = {
-        SecretId: process.env.SecretId,
-        SecretKey: process.env.SecretKey,
-        Bucket: process.env.Bucket, // Bucket 格式：test-1250000000
-        Region: process.env.Region,
-    }
-}
 
 var cos = new COS({
     SecretId: config.SecretId,
@@ -95,7 +99,7 @@ describe('getService()', function () {
             cos.getService(function (err, data) {
                 var hasBucket = false;
                 data.Buckets && data.Buckets.forEach(function (item) {
-                    if (item.Name === BucketLongName && item.Location === config.Region) {
+                    if (item.Name === BucketLongName && (item.Location === '' || item.Location === config.Region)) {
                         hasBucket = true;
                     }
                 });
@@ -922,6 +926,7 @@ describe('BucketTagging', function () {
             }, 2000);
         });
     });
+
     it('deleteBucketTagging()', function (done) {
         cos.deleteBucketTagging({
             Bucket: config.Bucket, // Bucket 格式：test-1250000000
@@ -966,7 +971,7 @@ describe('BucketTagging', function () {
     var Prefix = Date.now().toString(36);
     var Policy = {
         "version": "2.0",
-        "principal": {"qcs": ["qcs::cam::uin/2832742109:uin/2832742109"]}, // 这里的 10001 是 QQ 号
+        "principal": {"qcs": ["qcs::cam::uin/2779643970:uin/2779643970"]}, // 这里的 10001 是 QQ 号
         "statement": [{
             "effect": "allow",
             "action": [
@@ -992,6 +997,7 @@ describe('BucketTagging', function () {
                 Region: config.Region,
                 Policy: Policy
             }, function (err, data) {
+                console.log(err);
                 assert.ok(!err);
                 cos.getBucketPolicy({
                     Bucket: config.Bucket, // Bucket 格式：test-1250000000

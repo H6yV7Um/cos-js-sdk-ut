@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "main": "test.sh",
   "scripts": {
-    "test": "sh ./test.sh",
-    "nodejs-install": "sh ./nodejs/install.sh",
-    "nodejs-test": "sh ./nodejs/test.sh",
-    "js-v5-install": "sh ./js-v5/install.sh",
-    "js-v5-test": "sh ./js-v5/test.sh",
-    "js-v4-install": "sh ./js-v4/install.sh",
-    "js-v4-test": "sh ./js-v4/test.sh"
+    "nodejs": "cd ./nodejs && sh ./test.sh",
+    "js-v5": "cd ./js-v5 && sh ./test.sh",
+    "js-v4": "cd ./js-v4 && sh ./test.sh"
   },
   "repository": {
     "type": "git",
@@ -24,6 +20,7 @@
   "homepage": "https://github.com/StorageLab/cos-js-sdk-ut#readme",
   "description": "",
   "dependencies": {
-    "cos-nodejs-sdk-v5": "^2.0.0"
+    "cos-nodejs-sdk-v5": "^2.0.0",
+    "dev-server": "0.0.2"
   }
 }

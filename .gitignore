@@ -1,8 +1,9 @@
 .idea
-config.js
 node_modules
-nodejs/*/package.json
-nodejs/*/*.txt
-nodejs/*/*.zip
-js-v5/sdk
-js-v4/sdk
+/nodejs/*/package.json
+/nodejs/*/*.txt
+/nodejs/*/*.zip
+/js-v5/*/package.json
+/js-v4/*/package.json
+/*/start.sh
+/*/config.js
