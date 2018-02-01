@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pwd
 rm ./output -rf
 
 nodeSdk=('2.0.0' '2.0.6' '2.0.8' '2.2.6')

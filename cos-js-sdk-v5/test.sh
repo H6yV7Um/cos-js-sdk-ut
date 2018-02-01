@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pwd
 jsSdk=('0.3.7' '0.3.5')
 
 if [ ! -d "node_modules" ]; then
