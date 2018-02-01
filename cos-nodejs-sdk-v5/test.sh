@@ -15,7 +15,7 @@ do
 	fi
 	echo "testing ${version}"
 	outputPath='../output/nodejs-v'${version}'.xml'
-	mocha --reporter XUnit --reporter-options output=${outputPath} && echo ""
+	mocha --reporter xunit --reporter-options output=${outputPath} && echo ""
 	cd ../
 done
 
