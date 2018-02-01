@@ -1,0 +1,97 @@
+<testsuite name="Mocha Tests" tests="47" failures="6" errors="6" skipped="0" timestamp="Thu, 01 Feb 2018 07:42:17 GMT" time="36.74">
+<testcase classname="getService()" name="能正常列出 Bucket" time="1.198"/>
+<testcase classname="getAuth()" name="通过获取签名能正常获取文件" time="0.251"/>
+<testcase classname="putBucket()" name="正常创建 bucket" time="0.699"/>
+<testcase classname="getBucket()" name="正常获取 bucket 里的文件列表" time="0.165"/>
+<testcase classname="putObject()" name="fs.createReadStream 创建 object" time="2.126"/>
+<testcase classname="putObject()" name="fs.readFileSync 创建 object" time="2.119"/>
+<testcase classname="putObject()" name="捕获输入流异常" time="1.066"/>
+<testcase classname="getObject()" name="stream" time="2.119"/>
+<testcase classname="getObject()" name="body" time="2.124"/>
+<testcase classname="sliceUploadFile()" name="正常分片上传 object" time="0.604"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header ACL:private" time="0.198"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header ACL:public-read" time="0.266"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header ACL:public-read-write" time="0.27"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header GrantRead:1001,1002" time="0.271"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header GrantWrite:1001,1002" time="0.296"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header GrantFullControl:1001,1002" time="0.276"/>
+<testcase classname="BucketAcl" name="putBucketAcl() header ACL:public-read, GrantFullControl:1001,1002" time="0.304"/>
+<testcase classname="BucketAcl" name="putBucketAcl() xml" time="0.289"/>
+<testcase classname="BucketAcl" name="putBucketAcl() xml2" time="0.267"/>
+<testcase classname="BucketAcl" name="putBucketAcl() decodeAcl" time="0.231"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header ACL:private" time="0.269"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header ACL:default" time="0.174"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header ACL:public-read" time="0.211"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header ACL:public-read-write" time="0.205"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header GrantRead:1001,1002" time="0.209"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header GrantWrite:1001,1002" time="0.216"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header GrantFullControl:1001,1002" time="0.215"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() header ACL:public-read, GrantRead:1001,1002" time="0.24"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() xml" time="0.262"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() xml2" time="0.251"/>
+<testcase classname="ObjectAcl" name="putObjectAcl() decodeAcl" time="0.266"/>
+<testcase classname="BucketCors" name="deleteBucketCors()" time="2.077"/>
+<testcase classname="BucketCors" name="putBucketCors(),getBucketCors()" time="2.082"/>
+<testcase classname="BucketCors" name="putBucketCors() old" time="2.088"/>
+<testcase classname="BucketCors" name="putBucketCors() old" time="2.087"/>
+<testcase classname="BucketCors" name="putBucketCors() multi" time="2.083"/>
+<testcase classname="BucketTagging" name="putBucketTagging(),getBucketTagging()" time="0"><failure>false == true
+AssertionError [ERR_ASSERTION]: false == true
+    at test.js:917:20
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:619:20
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2068:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2126:21)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketTagging" name="deleteBucketTagging()" time="0"><failure>Cannot read property 'Tags' of undefined
+TypeError: Cannot read property 'Tags' of undefined
+    at test.js:941:59
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:569:17
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2068:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2126:21)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketTagging" name="putBucketTagging() multi" time="0"><failure>false == true
+AssertionError [ERR_ASSERTION]: false == true
+    at test.js:956:20
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:619:20
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2068:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2126:21)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketPolicy" name="putBucketPolicy(),getBucketPolicy()" time="0"><failure>false == true
+AssertionError [ERR_ASSERTION]: false == true
+    at test.js:1001:24
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:470:20
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2068:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2126:21)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketPolicy" name="putBucketPolicy() s3" time="0"><failure>false == true
+AssertionError [ERR_ASSERTION]: false == true
+    at test.js:1017:24
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:470:20
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2068:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2126:21)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketLocation" name="getBucketLocation()" time="0.031"/>
+<testcase classname="BucketLifecycle" name="deleteBucketLifecycle()" time="2.089"/>
+<testcase classname="BucketLifecycle" name="putBucketLifecycle(),getBucketLifecycle()" time="2.095"/>
+<testcase classname="BucketLifecycle" name="putBucketLifecycle() multi" time="0"><failure>false == true
+AssertionError [ERR_ASSERTION]: false == true
+    at test.js:1146:32
+    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:714:9
+    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2073:13)
+    at Request.&lt;anonymous&gt; (node_modules\cos-nodejs-sdk-v5\sdk\base.js:2119:29)
+    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
+    at endReadableNT (_stream_readable.js:1062:12)
+    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="params check" name="Region" time="0"/>
+<testcase classname="params check" name="Region" time="0"/>
+</testsuite>

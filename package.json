@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "test.sh",
   "scripts": {
-    "nodejs": "cd ./nodejs && sh ./test.sh",
-    "js-v5": "cd ./js-v5 && sh ./test.sh",
-    "js-v4": "cd ./js-v4 && sh ./test.sh"
+    "cos-nodejs-sdk-v5": "cd ./cos-nodejs-sdk-v5 && sh ./test.sh",
+    "cos-js-sdk-v5": "cd ./cos-js-sdk-v5 && sh ./test.sh",
+    "cos-js-sdk-v4": "cd ./cos-js-sdk-v4 && sh ./test.sh"
   },
   "repository": {
     "type": "git",

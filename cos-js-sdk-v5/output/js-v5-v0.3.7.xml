@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="http://127.0.0.1:4000/0.3.7/index.html" tests="1" failures="1" errors="0" time="0.006">
+<testsuite id="0" name="" hostname="localhost" tests="1" failures="1" errors="0" time="0.003" timestamp="2018-01-31T14:50:12Z">
+<testcase name="global failure" time="0.002" timestamp="2018-01-31T14:50:12Z">
+<failure type="AssertionFailedError" message="Uncaught TypeError: CreateListFromArrayLike called on non-object" />
+</testcase>
+<system-out>
+<![CDATA[
+[, global failure, 1] Uncaught TypeError: CreateListFromArrayLike called on non-object
+Source: http://127.0.0.1:4000/0.3.7/test.js:2
+]]>
+</system-out>
+</testsuite>
+</testsuites>
