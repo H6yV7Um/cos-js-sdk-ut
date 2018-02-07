@@ -1,100 +1,40 @@
-<testsuite name="Mocha Tests" tests="38" failures="6" errors="6" skipped="0" timestamp="Thu, 01 Feb 2018 07:40:24 GMT" time="30.637">
+<testsuite name="Mocha Tests" tests="38" failures="0" errors="0" skipped="0" timestamp="Wed, 07 Feb 2018 03:07:49 GMT" time="41.219">
 <testcase classname="getService()" name="能正常列出 Bucket" time="1.006"/>
-<testcase classname="getAuth()" name="通过获取签名能正常获取文件" time="0.255"/>
-<testcase classname="putBucket()" name="正常创建 bucket" time="0.927"/>
-<testcase classname="getBucket()" name="正常获取 bucket 里的文件列表" time="0.17"/>
-<testcase classname="putObject()" name="fs.createReadStream 创建 object" time="2.132"/>
-<testcase classname="putObject()" name="fs.readFileSync 创建 object" time="2.126"/>
-<testcase classname="putObject()" name="捕获输入流异常" time="1.733"/>
-<testcase classname="getObject()" name="stream" time="2.125"/>
-<testcase classname="getObject()" name="body" time="2.122"/>
-<testcase classname="sliceUploadFile()" name="正常分片上传 object" time="0.612"/>
-<testcase classname="BucketACL" name="putBucketAcl() header ACL:private" time="0.172"/>
-<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read" time="0.244"/>
-<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read-write" time="0.238"/>
-<testcase classname="BucketACL" name="putBucketAcl() header GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.254"/>
-<testcase classname="BucketACL" name="putBucketAcl() header GrantWrite:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.285"/>
-<testcase classname="BucketACL" name="putBucketAcl() header GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.226"/>
-<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read, GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.255"/>
-<testcase classname="BucketACL" name="putBucketAcl() xml" time="0.292"/>
-<testcase classname="BucketACL" name="putBucketAcl() xml2" time="0.282"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header ACL:private" time="0.315"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read" time="0.244"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read-write" time="0.249"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.25"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header GrantWrite:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.251"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.253"/>
-<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read, GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.279"/>
-<testcase classname="ObjectACL" name="putObjectAcl() xml" time="0.255"/>
-<testcase classname="ObjectACL" name="putObjectAcl() xml2" time="0.289"/>
-<testcase classname="BucketCORS" name="deleteBucketCors()" time="0"><failure>null == true
-AssertionError [ERR_ASSERTION]: null == true
-    at test.js:762:21
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:328:9
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1725:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1759:9)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
-<testcase classname="BucketCORS" name="putBucketCors(),getBucketCors()" time="2.083"/>
+<testcase classname="getAuth()" name="通过获取签名能正常获取文件" time="0.759"/>
+<testcase classname="putBucket()" name="正常创建 bucket" time="1.627"/>
+<testcase classname="getBucket()" name="正常获取 bucket 里的文件列表" time="0.299"/>
+<testcase classname="putObject()" name="fs.createReadStream 创建 object" time="2.393"/>
+<testcase classname="putObject()" name="fs.readFileSync 创建 object" time="2.254"/>
+<testcase classname="putObject()" name="捕获输入流异常" time="1.128"/>
+<testcase classname="getObject()" name="stream" time="2.129"/>
+<testcase classname="getObject()" name="body" time="2.271"/>
+<testcase classname="sliceUploadFile()" name="正常分片上传 object" time="0.89"/>
+<testcase classname="BucketACL" name="putBucketAcl() header ACL:private" time="0.478"/>
+<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read" time="0.518"/>
+<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read-write" time="0.686"/>
+<testcase classname="BucketACL" name="putBucketAcl() header GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.382"/>
+<testcase classname="BucketACL" name="putBucketAcl() header GrantWrite:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.382"/>
+<testcase classname="BucketACL" name="putBucketAcl() header GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.363"/>
+<testcase classname="BucketACL" name="putBucketAcl() header ACL:public-read, GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.531"/>
+<testcase classname="BucketACL" name="putBucketAcl() xml" time="0.445"/>
+<testcase classname="BucketACL" name="putBucketAcl() xml2" time="0.435"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header ACL:private" time="0.406"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read" time="0.313"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read-write" time="0.22"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.345"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header GrantWrite:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.347"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header GrantFullControl:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.531"/>
+<testcase classname="ObjectACL" name="putObjectAcl() header ACL:public-read, GrantRead:uin=&quot;1001&quot;, uin=&quot;1002&quot;" time="0.458"/>
+<testcase classname="ObjectACL" name="putObjectAcl() xml" time="0.431"/>
+<testcase classname="ObjectACL" name="putObjectAcl() xml2" time="0.282"/>
+<testcase classname="BucketCORS" name="deleteBucketCors()" time="2.219"/>
+<testcase classname="BucketCORS" name="putBucketCors(),getBucketCors()" time="2.088"/>
 <testcase classname="BucketCORS" name="putBucketCors() old" time="2.081"/>
-<testcase classname="BucketCORS" name="putBucketCors() old" time="2.084"/>
-<testcase classname="BucketCORS" name="putBucketCors() multi" time="2.092"/>
-<testcase classname="BucketTagging" name="putBucketTagging(),getBucketTagging()" time="0"><failure>false == true
-AssertionError [ERR_ASSERTION]: false == true
-    at test.js:873:13
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:587:20
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1720:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1745:13)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
-<testcase classname="BucketTagging" name="deleteBucketTagging()" time="0"><failure>false == true
-AssertionError [ERR_ASSERTION]: false == true
-    at test.js:896:21
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:538:20
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1720:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1745:13)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
-<testcase classname="BucketTagging" name="putBucketTagging() multi" time="0"><failure>false == true
-AssertionError [ERR_ASSERTION]: false == true
-    at test.js:911:13
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:587:20
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1720:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1745:13)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
-<testcase classname="BucketPolicy" name="putBucketPolicy(),getBucketPolicy()" time="0"><failure>false == true
-AssertionError [ERR_ASSERTION]: false == true
-    at test.js:954:13
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:444:20
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1720:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1745:13)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
-<testcase classname="BucketPolicy" name="putBucketPolicy() s3" time="0"><failure>false == true
-AssertionError [ERR_ASSERTION]: false == true
-    at test.js:970:13
-    at node_modules\cos-nodejs-sdk-v5\sdk\base.js:444:20
-    at cb (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1720:17)
-    at Request._callback (node_modules\cos-nodejs-sdk-v5\sdk\base.js:1745:13)
-    at Request.self.callback (node_modules\request\request.js:186:22)
-    at Request.&lt;anonymous&gt; (node_modules\request\request.js:1163:10)
-    at IncomingMessage.&lt;anonymous&gt; (node_modules\request\request.js:1085:12)
-    at endReadableNT (_stream_readable.js:1062:12)
-    at process._tickCallback (internal/process/next_tick.js:152:19)</failure></testcase>
+<testcase classname="BucketCORS" name="putBucketCors() old" time="2.142"/>
+<testcase classname="BucketCORS" name="putBucketCors() multi" time="2.204"/>
+<testcase classname="BucketTagging" name="putBucketTagging(),getBucketTagging()" time="2.374"/>
+<testcase classname="BucketTagging" name="deleteBucketTagging()" time="2.352"/>
+<testcase classname="BucketTagging" name="putBucketTagging() multi" time="2.283"/>
+<testcase classname="BucketPolicy" name="putBucketPolicy(),getBucketPolicy()" time="0.564"/>
+<testcase classname="BucketPolicy" name="putBucketPolicy() s3" time="0.579"/>
 </testsuite>
