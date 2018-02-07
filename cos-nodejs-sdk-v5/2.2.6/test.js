@@ -1096,15 +1096,16 @@ describe('BucketLocation', function () {
                 Region: config.Region
             }, function (err, data) {
                 assert.ok(!err);
-                setTimeout(function () {
-                    cos.getBucketLifecycle({
-                        Bucket: config.Bucket, // Bucket 格式：test-1250000000
-                        Region: config.Region
-                    }, function (err, data) {
-                        assert.ok(comparePlainObject([], data.Rules));
-                        done();
-                    });
-                }, 2000);
+                // setTimeout(function () {
+                //     cos.getBucketLifecycle({
+                //         Bucket: config.Bucket, // Bucket 格式：test-1250000000
+                //         Region: config.Region
+                //     }, function (err, data) {
+                //         assert.ok(comparePlainObject([], data.Rules));
+                //         done();
+                //     });
+                // }, 4000);
+                done();
             });
         });
         it('putBucketLifecycle(),getBucketLifecycle()', function (done) {
@@ -1117,15 +1118,16 @@ describe('BucketLocation', function () {
                 }
             }, function (err, data) {
                 assert.ok(!err);
-                setTimeout(function () {
-                    cos.getBucketLifecycle({
-                        Bucket: config.Bucket, // Bucket 格式：test-1250000000
-                        Region: config.Region
-                    }, function (err, data) {
-                        assert.ok(comparePlainObject(Rules, data && data.Rules));
-                        done();
-                    });
-                }, 2000);
+                // setTimeout(function () {
+                //     cos.getBucketLifecycle({
+                //         Bucket: config.Bucket, // Bucket 格式：test-1250000000
+                //         Region: config.Region
+                //     }, function (err, data) {
+                //         assert.ok(comparePlainObject(Rules, data && data.Rules));
+                //         done();
+                //     });
+                // }, 4000);
+                done();
             });
         });
         it('putBucketLifecycle() multi', function (done) {
@@ -1138,15 +1140,16 @@ describe('BucketLocation', function () {
                 }
             }, function (err, data) {
                 assert.ok(!err);
-                setTimeout(function () {
-                    cos.getBucketLifecycle({
-                        Bucket: config.Bucket, // Bucket 格式：test-1250000000
-                        Region: config.Region
-                    }, function (err, data) {
-                        assert.ok(comparePlainObject(RulesMulti, data.Rules));
-                        done();
-                    });
-                }, 2000);
+                // setTimeout(function () {
+                //     cos.getBucketLifecycle({
+                //         Bucket: config.Bucket, // Bucket 格式：test-1250000000
+                //         Region: config.Region
+                //     }, function (err, data) {
+                //         assert.ok(comparePlainObject(RulesMulti, data.Rules));
+                //         done();
+                //     });
+                // }, 4000);
+                done();
             });
         });
     });

@@ -34,7 +34,7 @@ puppeteer.launch({
                 } else if (text.indexOf('[report]') === 0) {
                     var report = text.substr('[report]'.length);
                     console.log(report);
-                    fs.writeFileSync(path.resolve(__dirname, `./output/js-v5-v${version}.xml`), report);
+                    fs.writeFileSync(path.resolve(__dirname, `./output/js5-v${version}.xml`), report);
                 } else {
                     console.log(text);
                 }
