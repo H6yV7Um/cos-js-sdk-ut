@@ -1,4 +1,4 @@
-<testsuite name="Mocha Tests" tests="1" failures="0" errors="0" skipped="0" timestamp="Wed, 07 Feb 2018 03:07:49 GMT" time="41.219">
+<testsuite name="Mocha Tests" tests="5" failures="0" errors="0" skipped="0" timestamp="Wed, 07 Feb 2018 03:07:49 GMT" time="41.219">
 <testcase classname="test1()" name="." time="1.006"/>
 <testcase classname="test2()" name="." time="1.006"/>
 <testcase classname="test3()" name="." time="1.006"/>
