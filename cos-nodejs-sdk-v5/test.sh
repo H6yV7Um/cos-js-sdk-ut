@@ -13,11 +13,11 @@ echo "testing ${Version}"
 outputPath='../output/nodejs-v'${Version}'.xml'
 
 # 执行测试脚本
-if [ $(uname -o) == "Msys" ]; then
-    mocha && echo ""
-else
-	mocha --reporter xunit --reporter-options output=${outputPath} && echo ""
-fi
+#if [ $(uname -o) == "Msys" ]; then
+#    mocha && echo ""
+#else
+#	mocha --reporter xunit --reporter-options output=${outputPath} && echo ""
+#fi
 
 # 删除 bucket
 node ../../tools/tools.js clear
