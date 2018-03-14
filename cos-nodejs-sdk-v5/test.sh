@@ -12,7 +12,7 @@ fi
 echo "testing ${Version}"
 outputPath='../output/nodejs-v'${Version}'.xml'
 
- 执行测试脚本
+# 执行测试脚本
 if [ $(uname -o) == "Msys" ]; then
     mocha && echo ""
 else
