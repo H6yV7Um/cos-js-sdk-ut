@@ -151,14 +151,27 @@ if (command === 'create') {
         console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
     });
 } else if (command === 'clearOld') {
-    ['nodejsut226-', 'nodejsut206-', 'nodejsut208-', 'nodejsut226-', 'nodejsut226-', 'js5ut035-', 'js5ut037-'].forEach(function (BucketPrefix) {
-        var Bucket = BucketPrefix + config.AppId;
-        var Region = 'yfb';
-        tool.clearBucket({
-            Bucket: Bucket,
-            Region: Region,
-        }, function (isSuccess) {
-            console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
-        });
+    cos.getService(function (err, data) {
+        data.Buckets.forEach(function (item) {
+            if (item.Name.indexOf('nodejsut') === 0) {
+                console.log(item.Name, item.Location);
+                tool.clearBucket({
+                    Bucket: item.Name,
+                    Region: item.Location || 'yfb',
+                }, function (isSuccess) {
+                    console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
+                });
+            }
+        })
     });
+    // ['nodejsut226-', 'nodejsut206-', 'nodejsut208-', 'nodejsut226-', 'nodejsut226-', 'js5ut035-', 'js5ut037-'].forEach(function (BucketPrefix) {
+    //     var Bucket = BucketPrefix + config.AppId;
+    //     var Region = 'yfb';
+    //     tool.clearBucket({
+    //         Bucket: Bucket,
+    //         Region: Region,
+    //     }, function (isSuccess) {
+    //         console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
+    //     });
+    // });
 }
