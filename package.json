@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "test.sh",
   "scripts": {
-    "cos-nodejs-sdk-v5": "cd ./cos-nodejs-sdk-v5 && sh ./test.sh",
+    "tools-init": "cd ./tools && tnpm i",
+    "delete-old": "cd ./tools && \"D:\\Program Files\\Git\\git-bash.exe\" ./start.sh",
+    "cos-nodejs-sdk-v5": "cd ./cos-nodejs-sdk-v5 && \"D:\\Program Files\\Git\\git-bash.exe\" ./start.sh",
     "cos-js-sdk-v5": "cd ./cos-js-sdk-v5 && sh ./test.sh",
     "cos-js-sdk-v4": "cd ./cos-js-sdk-v4 && sh ./test.sh"
   },

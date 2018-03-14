@@ -1,8 +1,7 @@
 {
-  "name": "nodejs",
+  "name": "tools",
   "version": "1.0.0",
-  "description": "",
-  "main": "config.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^5.0.0",
-    "request": "^2.83.0"
-  }
+    "cos-nodejs-sdk-v5": "file:../../../github/cos-nodejs-sdk-v5"
+  },
+  "devDependencies": {},
+  "description": ""
 }

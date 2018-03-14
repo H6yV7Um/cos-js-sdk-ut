@@ -1,22 +1,23 @@
 #!/bin/bash
 
 pwd
-rm ./output -rf
+# 创建 bucket
+node ../tools/tools.js create
+cd ${Version}/
+if [ ! -d "node_modules" ]; then
+    echo "installing $PWD"
+    tnpm init -y
+    tnpm i 'cos-nodejs-sdk-v5@'${Version} --save
+fi
+echo "testing ${Version}"
+outputPath='../output/nodejs-v'${Version}'.xml'
 
-nodeSdk=('2.0.0' '2.0.6' '2.0.8' '2.2.6')
-
-for version in ${nodeSdk[@]}
-do
-	cd ${version}/
-	if [ ! -d "node_modules" ]; then
-        echo "installing $PWD"
-        tnpm init -y
-        tnpm i 'cos-nodejs-sdk-v5@'${version} --save
-	fi
-	echo "testing ${version}"
-	outputPath='../output/nodejs-v'${version}'.xml'
+# 执行测试脚本
+if [ $(uname -o) == "Msys" ]; then
+    mocha && echo ""
+else
 	mocha --reporter xunit --reporter-options output=${outputPath} && echo ""
-	cd ../
-done
+fi
 
-cd ../
+# 删除 bucket
+node ../../tools/tools.js clear
