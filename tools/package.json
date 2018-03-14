@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cos-nodejs-sdk-v5": "file:../../../github/cos-nodejs-sdk-v5"
+    "cos-nodejs-sdk-v5": "^2.3.4"
   },
   "devDependencies": {},
   "description": ""
