@@ -1,18 +1,14 @@
 var COS = require('cos-nodejs-sdk-v5');
 var util = require('../util');
 
-var config;
-if (process.env.AppId) {
-    config = {
-        SecretId: process.env.SecretId,
-        SecretKey: process.env.SecretKey,
-        AppId: process.env.AppId,
-        Region: process.env.Region,
-    };
-} else {
-    config = require('../config');
-}
-config.Bucket = 'nodejsut206-' + config.AppId;
+var config = {
+    SecretId: process.env.SecretId,
+    SecretKey: process.env.SecretKey,
+    AppId: process.env.AppId,
+    Region: process.env.Region,
+    Bucket: process.env.Bucket,
+    Version: process.env.Version,
+};
 
 
 var fs = require('fs');
