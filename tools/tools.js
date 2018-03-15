@@ -15,7 +15,7 @@ var cos = new COS({
     Protocol: 'http:',
 });
 
-var tool = {
+var tools = {
     isBucketExist: function (opt, callback) {
         cos.headBucket(opt, function (err, data) {
             var isExist = data || (err && err.statusCode && Math.floor(err.statusCode / 100) === 2);
@@ -37,14 +37,14 @@ var tool = {
                     }]
                 }
             }, function (err, data) {
-                tool.isBucketExist(opt, callback);
+                tools.isBucketExist(opt, callback);
             });
         });
     },
     waitingForBucketDeleted: function (opt, callback) {
         var time0 = Date.now();
         var check = function () {
-            tool.isBucketExist(opt, function (isExist) {
+            tools.isBucketExist(opt, function (isExist) {
                 if (!isExist || Date.now() - time0 > 5000) {
                     callback(isExist);
                 } else {
@@ -68,7 +68,7 @@ var tool = {
                     Region: opt.Region,
                 }, function (err, data) {
                     cos.deleteBucket(opt, function (err, data) {
-                        tool.waitingForBucketDeleted(opt, function (isExist) {
+                        tools.waitingForBucketDeleted(opt, function (isExist) {
                             callback(!isExist);
                         });
                     });
@@ -107,7 +107,7 @@ var tool = {
                 }
             })
         };
-        tool.isBucketExist(opt, function (isExist) {
+        tools.isBucketExist(opt, function (isExist) {
             if (!isExist) {
                 callback(!isExist);
             } else {
@@ -138,40 +138,44 @@ var tool = {
 };
 
 
-var BucketOption = {
-    Bucket: config.Bucket,
-    Region: config.Region,
-};
-if (command === 'create') {
-    tool.createBucket(BucketOption, function (isSuccess) {
-        console.log('Bucket ' + config.Bucket + ' create ' + (isSuccess ? 'success' : 'error') + '.');
-    });
-} else if (command === 'clear') {
-    tool.clearBucket(BucketOption, function (isSuccess) {
-        console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
-    });
-} else if (command === 'clearOld') {
-    cos.getService(function (err, data) {
-        data.Buckets.forEach(function (item) {
-            if (item.Name.indexOf('nodejsut') === 0) {
-                console.log(item.Name, item.Location);
-                tool.clearBucket({
-                    Bucket: item.Name,
-                    Region: item.Location || 'yfb',
-                }, function (isSuccess) {
-                    console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
-                });
-            }
-        })
-    });
-    // ['nodejsut226-', 'nodejsut206-', 'nodejsut208-', 'nodejsut226-', 'nodejsut226-', 'js5ut035-', 'js5ut037-'].forEach(function (BucketPrefix) {
-    //     var Bucket = BucketPrefix + config.AppId;
-    //     var Region = 'yfb';
-    //     tool.clearBucket({
-    //         Bucket: Bucket,
-    //         Region: Region,
-    //     }, function (isSuccess) {
-    //         console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
-    //     });
-    // });
+if (module.parent) {
+    module.exports = tools;
+} else {
+    var BucketOption = {
+        Bucket: config.Bucket,
+        Region: config.Region,
+    };
+    if (command === 'create') {
+        tools.createBucket(BucketOption, function (isSuccess) {
+            console.log('Bucket ' + config.Bucket + ' create ' + (isSuccess ? 'success' : 'error') + '.');
+        });
+    } else if (command === 'clear') {
+        tools.clearBucket(BucketOption, function (isSuccess) {
+            console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
+        });
+    } else if (command === 'clearOld') {
+        cos.getService(function (err, data) {
+            data.Buckets.forEach(function (item) {
+                if (item.Name.indexOf('nodejsut') === 0) {
+                    console.log(item.Name, item.Location);
+                    tools.clearBucket({
+                        Bucket: item.Name,
+                        Region: item.Location || 'yfb',
+                    }, function (isSuccess) {
+                        console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
+                    });
+                }
+            })
+        });
+        // ['nodejsut226-', 'nodejsut206-', 'nodejsut208-', 'nodejsut226-', 'nodejsut226-', 'js5ut035-', 'js5ut037-'].forEach(function (BucketPrefix) {
+        //     var Bucket = BucketPrefix + config.AppId;
+        //     var Region = 'yfb';
+        //     tool.clearBucket({
+        //         Bucket: Bucket,
+        //         Region: Region,
+        //     }, function (isSuccess) {
+        //         console.log('Bucket ' + config.Bucket + ' clear and remove ' + (isSuccess ? 'success' : 'error') + '.');
+        //     });
+        // });
+    }
 }
