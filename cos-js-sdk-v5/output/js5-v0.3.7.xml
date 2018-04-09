@@ -1,4 +1,4 @@
-<testsuite id="0" name="" hostname="localhost" tests="36" failures="0" errors="0" time="0.003" timestamp="2018-01-31T14:50:12Z">
+<testsuite id="0" name="" hostname="localhost" tests="36" failures="0" errors="0" time="42.114" timestamp="2018-01-31T14:50:12Z">
 <testcase classname="getAuth()" name="通过获取签名能正常获取文件" time="0.759"/>
 <testcase classname="getBucket()" name="正常获取 bucket 里的文件列表" time="0.299"/>
 <testcase classname="putObject()" name="fs.createReadStream 创建 object" time="2.393"/>
