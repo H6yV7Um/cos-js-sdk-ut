@@ -19,5 +19,9 @@ else
 	mocha --reporter xunit --reporter-options output=${outputPath} && echo ""
 fi
 
+echo "============================================"
+cat ${outputPath}
+echo "============================================"
+
 # 删除 bucket
 node ../../tools/tools.js clear
