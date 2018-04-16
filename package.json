@@ -22,7 +22,7 @@
   "homepage": "https://github.com/StorageLab/cos-js-sdk-ut#readme",
   "description": "",
   "dependencies": {
-    "cos-nodejs-sdk-v5": "^2.0.0",
+    "cos-nodejs-sdk-v5": "^2.3.7",
     "dev-server": "0.0.2"
   }
 }

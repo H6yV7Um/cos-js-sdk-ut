@@ -759,7 +759,7 @@ describe('BucketCORS', function () {
                     assert(err && err.error.Code === "NoSuchCORSConfiguration");
                     done();
                 });
-            }, 2000)
+            }, 5000)
         });
     });
     it('putBucketCors(),getBucketCors()', function (done) {
@@ -858,27 +858,27 @@ describe('BucketTagging', function () {
         {Key: "k1", Value: "v1"},
         {Key: "k2", Value: "v2"},
     ];
-    it('putBucketTagging(),getBucketTagging()', function (done) {
-        Tags[0].Value = Date.now().toString(36);
-        cos.putBucketTagging({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Tagging: {
-                Tags: Tags
-            }
-        }, function (err, data) {
-            assert(!err);
-            setTimeout(function () {
-                cos.getBucketTagging({
-                    Bucket: config.Bucket,
-                    Region: config.Region
-                }, function (err, data) {
-                    assert(comparePlainObject(Tags, data.Tags));
-                    done();
-                });
-            },2000)
-        });
-    });
+    // it('putBucketTagging(),getBucketTagging()', function (done) {
+    //     Tags[0].Value = Date.now().toString(36);
+    //     cos.putBucketTagging({
+    //         Bucket: config.Bucket,
+    //         Region: config.Region,
+    //         Tagging: {
+    //             Tags: Tags
+    //         }
+    //     }, function (err, data) {
+    //         assert(!err);
+    //         setTimeout(function () {
+    //             cos.getBucketTagging({
+    //                 Bucket: config.Bucket,
+    //                 Region: config.Region
+    //             }, function (err, data) {
+    //                 assert(comparePlainObject(Tags, data.Tags));
+    //                 done();
+    //             });
+    //         },2000)
+    //     });
+    // });
     it('deleteBucketTagging()', function (done) {
         cos.deleteBucketTagging({
             Bucket: config.Bucket,
@@ -896,27 +896,27 @@ describe('BucketTagging', function () {
             }, 2000);
         });
     });
-    it('putBucketTagging() multi', function (done) {
-        Tags[0].Value = Date.now().toString(36);
-        cos.putBucketTagging({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Tagging: {
-                Tags: TagsMulti
-            }
-        }, function (err, data) {
-            assert(!err);
-            setTimeout(function () {
-                cos.getBucketTagging({
-                    Bucket: config.Bucket,
-                    Region: config.Region
-                }, function (err, data) {
-                    assert(comparePlainObject(TagsMulti, data.Tags));
-                    done();
-                });
-            },2000)
-        });
-    });
+    // it('putBucketTagging() multi', function (done) {
+    //     Tags[0].Value = Date.now().toString(36);
+    //     cos.putBucketTagging({
+    //         Bucket: config.Bucket,
+    //         Region: config.Region,
+    //         Tagging: {
+    //             Tags: TagsMulti
+    //         }
+    //     }, function (err, data) {
+    //         assert(!err);
+    //         setTimeout(function () {
+    //             cos.getBucketTagging({
+    //                 Bucket: config.Bucket,
+    //                 Region: config.Region
+    //             }, function (err, data) {
+    //                 assert(comparePlainObject(TagsMulti, data.Tags));
+    //                 done();
+    //             });
+    //         },2000)
+    //     });
+    // });
 });
 
 describe('BucketPolicy', function () {
